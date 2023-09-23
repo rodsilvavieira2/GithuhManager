@@ -1,4 +1,4 @@
-package com.example.githuhmanager.home
+package com.example.githuhmanager.ui.welcome
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
@@ -28,8 +28,10 @@ import com.example.githuhmanager.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun WelcomeScreen() {
-    Scaffold { innerPadding ->
+fun WelcomeScreen(
+    onGoToHomeScreen : () -> Unit
+) {
+    Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
         Column(
             modifier = Modifier
                 .padding(innerPadding)
@@ -47,7 +49,9 @@ fun WelcomeScreen() {
                 )
             )
 
-            GithubSubmitButton()
+            GithubSubmitButton(
+                onClick = onGoToHomeScreen
+            )
         }
     }
 }
@@ -78,9 +82,11 @@ fun LogoAndMessage() {
 }
 
 @Composable
-fun GithubSubmitButton() {
+fun GithubSubmitButton(
+    onClick: () -> Unit
+) {
     return Button(
-        onClick = { /*TODO*/ }, modifier = Modifier
+        onClick = onClick, modifier = Modifier
             .fillMaxWidth()
             .height(56.dp)
     ) {

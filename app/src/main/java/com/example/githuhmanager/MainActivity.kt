@@ -3,27 +3,45 @@ package com.example.githuhmanager
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.ui.Modifier
-import com.example.githuhmanager.home.WelcomeScreen
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.example.githuhmanager.ui.home.HomeScreen
 import com.example.githuhmanager.ui.theme.GithuhManagerTheme
+import com.example.githuhmanager.ui.welcome.WelcomeScreen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            GithuhManagerTheme (
+            GithuhManagerTheme(
                 dynamicColor = false
-            ){
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-                    WelcomeScreen()
-                }
+            ) {
+                GithubManagerApp()
             }
         }
     }
 }
+
+@Composable
+fun GithubManagerApp() {
+    val navController =   rememberNavController()
+
+    NavHost(navController = navController, startDestination = "welcome") {
+        composable("welcome") {
+            WelcomeScreen(onGoToHomeScreen = {
+                navController.navigateSingleTopTo("home")
+            })
+        }
+
+        composable("home") {
+            HomeScreen()
+        }
+    }
+}
+
+fun NavHostController.navigateSingleTopTo(route: String) =
+    this.navigate(route) { launchSingleTop = true }
