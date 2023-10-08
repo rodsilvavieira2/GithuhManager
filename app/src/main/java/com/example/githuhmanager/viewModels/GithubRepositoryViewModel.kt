@@ -1,4 +1,4 @@
-package com.example.githuhmanager.ui.screens
+package com.example.githuhmanager.viewModels
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -24,14 +24,13 @@ sealed interface GithubReposUiState {
 class GithubReposViewModel @Inject constructor (
     private val networkGithubReposRepository: IGithubReposRepository
 ) : ViewModel() {
-    var uiState: GithubReposUiState by mutableStateOf(GithubReposUiState.Loading)
-        private set
+    private var uiState: GithubReposUiState by mutableStateOf(GithubReposUiState.Loading)
 
     init {
         getGitRepos()
     }
 
-    fun getGitRepos () {
+    private fun getGitRepos () {
         viewModelScope.launch {
             uiState = GithubReposUiState.Loading
 

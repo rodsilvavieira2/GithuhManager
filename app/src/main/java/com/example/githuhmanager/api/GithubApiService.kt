@@ -8,6 +8,7 @@ import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import retrofit2.http.GET
 import retrofit2.http.Path
+import javax.inject.Named
 import javax.inject.Singleton
 
 interface IGithubApiService {
@@ -19,12 +20,12 @@ interface IGithubApiService {
 @InstallIn(SingletonComponent::class)
 object GitHubApiModule {
 
+    @Named("baseUrl")
+    lateinit var baseUl: String
 
     @Singleton
     @Provides
     fun providerGithubApiService(): IGithubApiService {
-        return Retrofit.Builder().baseUrl(BASE_URL).build().create(IGithubApiService::class.java)
+        return Retrofit.Builder().baseUrl(baseUl).build().create(IGithubApiService::class.java)
     }
 }
-
-const val BASE_URL = "https://api.github.com/"
