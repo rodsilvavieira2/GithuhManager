@@ -4,15 +4,16 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.githuhmanager.ui.home.HomeScreen
+import com.example.githuhmanager.ui.screens.HomeScreen
+import com.example.githuhmanager.ui.screens.WelcomeScreen
 import com.example.githuhmanager.ui.theme.GithuhManagerTheme
-import com.example.githuhmanager.ui.welcome.WelcomeScreen
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -1,4 +1,4 @@
-package com.example.githuhmanager.ui.welcome
+package com.example.githuhmanager.ui.screens
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
@@ -42,7 +42,7 @@ fun WelcomeScreen(
             LogoAndMessage()
 
             Text(
-                text = "Gerencie seus repositórios do github de forma simples e rápida",
+                text = "Veja seus repositórios do github de forma simples e rápida",
                 textAlign = TextAlign.Center,
                 style = MaterialTheme.typography.bodyLarge.copy(
                     fontSize = 20.sp
@@ -73,7 +73,7 @@ fun LogoAndMessage() {
                 Spacer(modifier = Modifier.width(16.dp))
 
                 Text(
-                    text = "Github Manager",
+                    text = "Github Repos",
                     fontStyle = MaterialTheme.typography.titleLarge.fontStyle
                 )
             }
@@ -93,14 +93,6 @@ fun GithubSubmitButton(
         Row(
             verticalAlignment = Alignment.CenterVertically,
         ) {
-            Image(
-                painter = painterResource(id = R.drawable.github_mark_white),
-                contentDescription = "Github logo",
-                modifier = Modifier.size(32.dp, 32.dp)
-            )
-
-            Spacer(modifier = Modifier.width(8.dp))
-
             Text(text = "Enter com o github")
         }
     }
