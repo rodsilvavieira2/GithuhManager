@@ -6,13 +6,11 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class GithubReposNetworkModel(
     @SerialName("id")
-    val id: String,
-    @SerialName("name")
+    val id: Int,
+    @SerialName("full_name")
     val name: String,
     @SerialName("language")
-    val language: String,
-    @SerialName("stars")
-    val stars: String,
+    val language: String?,
     @SerialName("visibility")
     val visibility: String
 )
