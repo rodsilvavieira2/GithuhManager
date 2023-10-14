@@ -7,7 +7,7 @@ import kotlinx.serialization.Serializable
 data class GithubReposNetworkModel(
     @SerialName("id")
     val id: Int,
-    @SerialName("full_name")
+    @SerialName("name")
     val name: String,
     @SerialName("language")
     val language: String?,

@@ -14,7 +14,7 @@ import java.io.IOException
 import javax.inject.Inject
 
 sealed interface GithubReposUiState {
-    data class Success(val repos: List<GithubReposNetworkModel>) : GithubReposUiState
+    data class Success(val data: List<GithubReposNetworkModel>) : GithubReposUiState
     object Loading : GithubReposUiState
     object Error : GithubReposUiState
 }

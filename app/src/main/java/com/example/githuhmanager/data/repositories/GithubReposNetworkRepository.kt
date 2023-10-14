@@ -20,7 +20,6 @@ class NetworkGithubReposRepository @Inject constructor (
     }
 }
 
-
 @Module
 @InstallIn(SingletonComponent::class)
 abstract class GithubReposRepositoryModule  {
