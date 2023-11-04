@@ -22,7 +22,6 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -59,7 +58,7 @@ fun HomeScreen(
                 )
             }
 
-            is GithubReposUiState.Error -> {
+            else -> {
                 HomeError(
                     modifier = Modifier
                         .padding(innerPadding)
@@ -126,7 +125,7 @@ fun HomeCardRepo(message: String) {
     ) {
         Box(
             modifier = Modifier
-                .background(Color.White.copy(alpha = opacity.value))
+                .background(MaterialTheme.colorScheme.primary)
                 .padding(16.dp, 24.dp)
                 .fillMaxWidth()
                 .pointerInput(
@@ -151,7 +150,7 @@ fun HomeCardRepo(message: String) {
                 Text(
                     text = message.uppercase()[0] + message.substring(1),
                     style = MaterialTheme.typography.bodyLarge.copy(
-                        color = Color.Black
+                        color = MaterialTheme.colorScheme.onPrimary
                     )
                 )
             }

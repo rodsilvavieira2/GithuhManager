@@ -20,17 +20,22 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.githuhmanager.R
+import com.example.githuhmanager.viewModels.GithubAuthViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun WelcomeScreen(
-    onGoToHomeScreen : () -> Unit
+   viwModel: GithubAuthViewModel = hiltViewModel(),
 ) {
+    val context = LocalContext.current
+
     Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
         Column(
             modifier = Modifier
@@ -50,7 +55,9 @@ fun WelcomeScreen(
             )
 
             GithubSubmitButton(
-                onClick = onGoToHomeScreen
+                onClick = {
+                    viwModel.onGithubLogin(context)
+                }
             )
         }
     }

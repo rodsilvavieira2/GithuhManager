@@ -10,12 +10,22 @@ import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
 import retrofit2.Retrofit
 import retrofit2.http.GET
+import retrofit2.http.POST
 import retrofit2.http.Path
+import retrofit2.http.Query
 import javax.inject.Singleton
 
 interface IGithubApiService {
     @GET("users/{user}/repos")
     suspend fun getRepos(@Path("user") user: String): List<GithubReposNetworkModel>
+
+
+    @POST("/login/oauth/access_token")
+    suspend fun getAuthAccessToken(
+        @Query("client_id") clientId: String,
+        @Query("client_secret") clientSecret: String,
+        @Query("code") code: String
+    )
 }
 
 @Module()
@@ -29,8 +39,14 @@ object GitHubApiModule {
     @Singleton
     @Provides
     fun providerGithubApiService(): IGithubApiService {
-        return Retrofit.Builder().baseUrl("https://api.github.com/")
+        return Retrofit.Builder().baseUrl("https://github.com")
             .addConverterFactory(json.asConverterFactory("application/json".toMediaType())).build()
             .create(IGithubApiService::class.java)
     }
 }
+
+data class AuthAccessTokenInput(
+    val clientId: String,
+    val clientSecret: String,
+    val code: String
+)
